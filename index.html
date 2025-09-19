@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+   
+  <meta charset="UTF-8">
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันครบรอบรักเรา 💖</title>
+    <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffe6e6, #ffd1dc);
+      overflow: hidden;
+      /* ซ่อนหัวใจที่เลยออกไป */
+      font-family: "Segoe UI", "Noto Sans Thai", sans-serif;
+      text-align: center;
+      position: relative;
+      /* สำหรับให้หัวใจลอยสัมพัทธ์กับ body */
+    }
+
+    .heart-frame {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      clip-path: path("M200 380 L40 220 A120 120 0 0 1 200 60 A120 120 0 0 1 360 220 Z");
+      background: #ff4b6e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 20px rgba(255, 75, 110, 0.3);
+      animation: floatHeart 4s ease-in-out infinite;
+      z-index: 1;
+      /* ให้กรอบหัวใจอยู่ด้านบน */
+    }
+
+    .heart-frame img {
+      width: 90%;
+      height: 90%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    @keyframes floatHeart {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #ff3366;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(255, 100, 150, 0.3);
+      z-index: 1;
+    }
+
+    .surprise-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .surprise-message.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .surprise-box {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 80%;
+      line-height: 1.8;
+      font-size: 18px;
+      color: #333;
+      position: relative;
+      text-align: left;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      color: #999;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .close-btn:hover {
+      color: #ff4b6e;
+    }
+
+    .btn-group {
+      margin-top: 15px;
+      z-index: 1;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background: #ff4b6e;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 75, 110, 0.4);
+      transition: transform 0.2s;
+      margin: 0 10px;
+      /* เว้นระยะห่างระหว่างปุ่ม */
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff66b3;
+    }
+
+    /* CSS สำหรับหัวใจที่ลอย - ปรับปรุงให้สวยขึ้น */
+    .floating-heart {
+      position: absolute;
+      bottom: -50px;
+      /* เริ่มจากด้านล่างนอกจอ */
+      width: 30px;
+      /* ขนาดเริ่มต้น */
+      height: 30px;
+      /* ขนาดเริ่มต้น */
+      background-color: var(--heart-color, #ff66b3);
+      /* ใช้ custom property */
+      transform: rotate(-45deg);
+      z-index: 0;
+      opacity: 0;
+      filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5));
+      /* เพิ่มเงาให้ดูมีมิติ */
+      animation: floatUp var(--duration, 8s) ease-in forwards;
+      /* ใช้ custom property */
+    }
+
+    .floating-heart::before,
+    .floating-heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: inherit;
+      /* สืบทอดสีจาก parent */
+      border-radius: 50%;
+    }
+
+    .floating-heart::before {
+      top: -10px;
+      left: 5px;
+    }
+
+    .floating-heart::after {
+      left: 15px;
+      top: 5px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(-45deg) scale(0.5);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-100vh) rotate(135deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <div class="heart-frame">
+        <img src="couple.png" alt="รูปคู่ของเรา">
+      </div>
+
+    <div class="message">💖 Happy 6-Month Anniversary 💖<br>ขอบคุณที่อยู่เคียงข้างกันเสมอ</div>
+
+    <div class="btn-group">
+        <button onclick="playSong()">กดเพื่อฟัง เพลงรักเพลงแรก (Blooming) 🎶</button>
+        <button onclick="showMessage()">ข้อความจากใจ 💕</button>
+      </div>
+
+    <audio id="player" src="Blooming.mp3"></audio>
+
+    <div class="surprise-message" id="surpriseMessage">
+        <div class="surprise-box">
+            <button class="close-btn" onclick="closeMessage()">&times;</button>
+            <h2>ถึง...อ้วน</h2>
+            <p>สุขสันต์วันครบรอบ 6 เดือนนะ เวลาผ่านไปไวเหมือนโกหกเลยเนอะ ตั้งแต่รู้จักกันมา เค้ามีความสุขมากๆ เลยนะ</p>
+            <p><strong>ขอโทษนะที่บางทีพูดจาไม่ดี หรือทำตัวไม่น่ารักใส่</strong>
+        แต่เค้าแค่อยากจะบอกว่าไม่ว่าเธอจะอ้วนขึ้นหรือผอมลง เค้าก็รักเธอนะ เพราะสิ่งที่เค้ารักคือเธอในทุกๆ แบบที่เธอเป็น
+      </p>
+            <p>ขอบคุณนะที่คอยอยู่เคียงข้างกันมาตลอด ขอบคุณที่เข้าใจและให้อภัยในทุกๆ เรื่อง
+        สัญญาว่าจะรักและดูแลเธอให้ดีที่สุดเลยนะ รักเธอนะ อ้วน!</p>
+          </div>
+      </div>
+
+   
+  <script>
+    function playSong() {
+      const player = document.getElementById("player");
+      player.play();
+    }
+
+    function showMessage() {
+      const messageBox = document.getElementById("surpriseMessage");
+      messageBox.classList.add("show");
+    }
+
+    function closeMessage() {
+      const messageBox = document.getElementById("surpriseMessage");
+      messageBox.classList.remove("show");
+    }
+
+    // สีหัวใจที่น่ารักๆ
+    const heartColors = ['#ff7e7e', '#ffc0cb', '#ff99dd', '#ffccff', '#ffb6c1', '#f08080'];
+
+    // ฟังก์ชันสร้างหัวใจลอยขึ้นมา
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+
+      // สุ่มตำแหน่งเริ่มต้นด้านซ้าย/ขวา
+      heart.style.left = `${Math.random() * 100}vw`;
+
+      // สุ่มขนาดเล็กน้อย
+      const size = Math.random() * 20 + 20; // ขนาดระหว่าง 20px - 40px
+      heart.style.width = `${size}px`;
+      heart.style.height = `${size}px`;
+
+      // สุ่มสีหัวใจ
+      const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
+      heart.style.setProperty('--heart-color', randomColor);
+
+      // สุ่มความเร็ว (5-10 วินาที)
+      const duration = Math.random() * 5 + 5;
+      heart.style.setProperty('--duration', `${duration}s`);
+
+      heart.style.animationDelay = `${Math.random() * 3}s`; // สุ่มดีเลย์ในการเริ่ม
+
+      document.body.appendChild(heart);
+
+      // ลบหัวใจออกเมื่อแอนิเมชันจบเพื่อไม่ให้ค้างใน DOM
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    // สร้างหัวใจลอยขึ้นมาเรื่อยๆ ทุก 300ms
+    setInterval(createFloatingHeart, 300);
+  </script>
+</body>
+
+</html>
