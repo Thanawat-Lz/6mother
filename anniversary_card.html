@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำถามจากใจ</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            font-family: "Segoe UI", "Noto Sans Thai", sans-serif;
+            text-align: center;
+            color: #d81b60;
+            overflow: hidden;
+            position: relative;
+        }
+        .main-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #e91e63;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .yes-btn {
+            background-color: #ff80ab;
+            color: white;
+        }
+        .no-btn {
+            background-color: #f48fb1;
+            color: white;
+            position: absolute; /* ทำให้ปุ่ม "ไม่รัก" เคลื่อนที่ได้ */
+            transition: transform 0.5s ease-in-out;
+        }
+        .yes-btn:hover {
+            transform: scale(1.1);
+            background-color: #e91e63;
+        }
+        .no-btn:hover {
+            animation: shake 0.5s infinite; /* ทำให้ปุ่มสั่นเมื่อเมาส์อยู่ใกล้ */
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+        .hidden {
+            display: none;
+        }
+        .heart-icon {
+            font-size: 10em;
+            color: #ff3366;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .heart-emoji {
+            font-size: 2em;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container" id="questionPage">
+        <h1>คำถามสำคัญ!</h1>
+        <p>อีอ้วนน... รักเด็กอ้วนมั้ย? 💖</p>
+        <div class="button-group">
+            <button class="yes-btn" onclick="showSurprise()">รักสิ!</button>
+            <button class="no-btn" onmouseover="moveButton()">ไม่รัก!</button>
+        </div>
+    </div>
+
+    <div class="main-container hidden" id="surprisePage">
+        <span class="heart-icon">💖</span>
+        <h1>ดีใจที่สุดเลยอ้วน!</h1>
+        <p>รู้แล้วว่าต้องตอบแบบนี้! <span class="heart-emoji">🥰</span></p>
+        <p>ถ้าอย่างนั้น กดตรงนี้เพื่อดูเซอร์ไพรส์วันครบรอบเลย! <span class="heart-emoji">🎉</span></p>
+        <button class="yes-btn" onclick="redirectToAnniversary()">ดูเซอร์ไพรส์!</button>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.querySelector('.no-btn');
+            // สุ่มตำแหน่งใหม่ภายในหน้าจอ
+            const newX = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const newY = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+        }
+
+        function showSurprise() {
+            document.getElementById('questionPage').classList.add('hidden');
+            document.getElementById('surprisePage').classList.remove('hidden');
+        }
+
+        function redirectToAnniversary() {
+            // ใส่ชื่อไฟล์หน้าการ์ดวันครบรอบของคุณตรงนี้
+            window.location.href = "index.html"; 
+        }
+    </script>
+</body>
+</html>
